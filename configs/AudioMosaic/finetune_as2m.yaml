@@ -1,0 +1,55 @@
+epochs: 100
+warmup_epochs: 10
+lr: 0.0002
+blr: 0.0002
+blr_scale: linear
+min_lr: 1.0e-06
+weight_decay: 0.01
+lr_schedule: cosine
+amp: true
+sync_bn: false
+log_frequency: 100
+save_frequency: 100
+first_eval_epoch: 15
+param_groups_lrd: true
+layer_decay: 0.75
+num_classes: 527
+mask_t_prob: 0.2
+mask_f_prob: 0.2
+trainset_weights: dataset/audioset_util/weight_full.csv
+weighted_sample_size: 200000
+criterion:
+  name: BCEWithLogitsLoss
+model:
+  name: mst_classifier
+  # Encoder
+  spec_size:
+    - 1024
+    - 128
+  patch_stride:
+    - 16
+    - 16
+  depth: 12
+  embed_dim: 768
+  num_heads: 12
+  drop_path_rate: 0.1
+  pos_trainable: true
+  proj_bias: true
+  # Classifier
+  pooling: avg
+  num_classes: $num_classes
+  ckpt_path: experiments/dev_main/base_t06_f04_fc_bs6144/pretrain/checkpoints/model_state_dict.pt
+optimizer:
+  name: AdamW
+  lr: $lr
+data_manager:
+  name: DatasetManager
+  train_bs: 256
+  eval_bs: 256
+  n_workers: 8
+  train_d_type: AudiosetDataset
+  test_d_type: AudiosetDataset
+  train_tf_op: AudioSetFinetune
+  test_tf_op: AudioSetFinetune
+  train_path: dataset/audioset_util/full_local.json
+  test_path: dataset/audioset_util/eval_local.json

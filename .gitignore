@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*~
+
+# AudioMosaic-specific
+checkpoints/
+hf_release/
+experiments/
+wandb/
+
+# Local model / data artifacts
+*.bin
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+*.tar
+*.tar.gz
+
+# coco_caption (LTU evaluation only; pip install pycocoevalcap or clone from upstream)
+coco_caption/
+
+# Large AudioSet manifest JSONs — regenerate with prepare_audioset.py
+dataset/audioset_util/full.json
+dataset/audioset_util/full_local.json
+dataset/audioset_util/unbalanced.json
+
+# Internal release / upload scripts (not part of public release)
+scripts/release_*.py
+scripts/upload_*.py
+
+# Logs
+*.log
+log/
+
+# Secrets
+.env

@@ -1,0 +1,12 @@
+index,mid,display_name
+0,/m/spcmd00,"yes"
+1,/m/spcmd01,"no"
+2,/m/spcmd02,"up"
+3,/m/spcmd03,"down"
+4,/m/spcmd04,"left"
+5,/m/spcmd05,"right"
+6,/m/spcmd06,"on"
+7,/m/spcmd07,"off"
+8,/m/spcmd08,"stop"
+9,/m/spcmd09,"go"
+10,/m/spcmd10,"_unknown_"

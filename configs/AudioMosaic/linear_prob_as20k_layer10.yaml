@@ -1,0 +1,48 @@
+epochs: 60
+warmup_epochs: 4
+lr: 0.0005
+blr: 0.0005
+blr_scale: linear
+min_lr: 1.0e-06
+weight_decay: 0.01
+lr_schedule: cosine
+amp: true
+sync_bn: false
+log_frequency: 100
+save_frequency: 60
+first_eval_epoch: 15
+num_classes: 527
+criterion:
+  name: BCEWithLogitsLoss
+model:
+  name: audiomosaic_layer_probe
+  spec_size:
+    - 1024
+    - 128
+  patch_stride:
+    - 16
+    - 16
+  depth: 12
+  embed_dim: 768
+  num_heads: 12
+  drop_path_rate: 0.1
+  pos_trainable: true
+  proj_bias: true
+  pooling: avg
+  num_classes: $num_classes
+  probe_layer: 10
+  ckpt_path: experiments/AudioMosaic/pretrain/checkpoints/model_state_dict.pt
+optimizer:
+  name: AdamW
+  lr: $lr
+data_manager:
+  name: DatasetManager
+  train_bs: 64
+  eval_bs: 128
+  n_workers: 8
+  train_d_type: AudiosetDataset
+  test_d_type: AudiosetDataset
+  train_tf_op: AudioSetFinetune
+  test_tf_op: AudioSetFinetune
+  train_path: dataset/audioset_util/balanced_local.json
+  test_path: dataset/audioset_util/eval_local.json

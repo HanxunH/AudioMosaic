@@ -1,0 +1,58 @@
+epochs: 20
+warmup_epochs: 1
+lr: 0.001
+blr: 0.001
+blr_scale: linear
+min_lr: 1.0e-06
+weight_decay: 0.01
+lr_schedule: cosine
+amp: true
+sync_bn: false
+log_frequency: 100
+save_frequency: 60
+first_eval_epoch: 0
+param_groups_lrd: true
+layer_decay: 0.75
+num_classes: 2
+mask_t_prob: 0.0
+mask_f_prob: 0.0
+criterion:
+  name: CrossEntropyLoss
+  weight:
+    - 0.1
+    - 0.9
+model:
+  name: audiomosaic_classifier
+  # Encoder
+  spec_size:
+    - 1024
+    - 128
+  patch_stride:
+    - 16
+    - 16
+  depth: 12
+  embed_dim: 768
+  num_heads: 12
+  drop_path_rate: 0.1
+  pos_trainable: true
+  proj_bias: true
+  # Classifier
+  pooling: avg
+  num_classes: $num_classes
+  ckpt_path: experiments/AudioMosaic/pretrain/checkpoints/model_state_dict.pt
+optimizer:
+  name: AdamW
+  lr: $lr
+data_manager:
+  name: DatasetManager
+  train_bs: 128
+  eval_bs: 128
+  n_workers: 8
+  label_csv: dataset/envsdd_util/class_labels_indices.csv
+  train_d_type: AudiosetDataset
+  test_d_type: AudiosetDataset
+  train_tf_op: EnvSDDFinetune
+  test_tf_op: EnvSDDFinetune
+  train_path: dataset/envsdd_util/tta/dev/train.json
+  test_path: dataset/envsdd_util/tta/test/test01.json
+  pad_to_seconds: true

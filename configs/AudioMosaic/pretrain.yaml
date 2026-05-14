@@ -1,0 +1,60 @@
+epochs: 400
+warmup_epochs: 1
+lr: 0.0006
+min_lr: 1.e-6
+lr_schedule: cosine
+amp: true
+sync_bn: true
+compile: true
+compile_dynamic: false
+weight_decay: 0.05
+online_classifier: false
+log_frequency: 50
+save_frequency: 100
+criterion:
+  name: NTXentLoss
+  temperature: 0.1
+  gather_distributed: true
+  tf_masking: true
+  learnable_tau: false
+  online_classifier: $online_classifier
+model:
+  name: audiomosaic_pretrain
+  # Encoder
+  spec_size:
+    - 1024
+    - 128
+  patch_stride:
+    - 16
+    - 16
+  depth: 12
+  embed_dim: 768
+  num_heads: 12
+  drop_path_rate: 0.1
+  mask_ratio_time: 0.6
+  mask_ratio_freq: 0.4
+  pos_trainable: true
+  proj_bias: true
+  # SimCLR
+  learnable_tau: false
+  project_embedding_dim: 128
+  online_classifier: $online_classifier
+  num_classes: 527
+  pooling: avg
+  use_fc_norm: true
+  # Training tricks
+  use_checkpoint: true
+  checkpointing_fraction: 0.7
+optimizer:
+  name: AdamW
+  lr: $lr
+data_manager:
+  name: DatasetManager
+  train_bs: 512
+  eval_bs: 512
+  train_d_type: AudiosetCLRDataset
+  train_tf_op: AudioMosaicPretrain
+  train_path: dataset/audioset_util/full_local.json
+  test_d_type: AudiosetDataset
+  test_tf_op: AudioSetFinetune
+  test_path: dataset/audioset_util/eval_local.json

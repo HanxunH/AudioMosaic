@@ -1,0 +1,21 @@
+prompt_template_name: alpaca_short
+model_type: AudioMosaic-LTU
+audio_encoder_path: experiments/AudioMosaic/pretrain/checkpoints/model_state_dict.pt
+base_model: checkpoints/ltu_pretrained_mdls
+data_path: /PATH/TO/datasets/openaqa/data/closed_ended/combine_cla_prep.json
+batch_size: 256
+micro_batch_size: 32
+num_epochs: 2
+learning_rate: 1.e-3
+cutoff_len: 108
+val_set_size: 0
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.05
+lora_target_modules: 
+  - dummy
+train_on_inputs: true
+group_by_length: true 
+save_steps: 1000
+trainable_params: proj+norm
+resume_from_checkpoint: false

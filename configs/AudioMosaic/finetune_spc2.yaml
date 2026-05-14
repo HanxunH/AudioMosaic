@@ -1,0 +1,53 @@
+epochs: 200
+warmup_epochs: 5
+lr: 0.001
+blr: 0.001
+blr_scale: linear
+min_lr: 1.0e-06
+weight_decay: 0.01
+lr_schedule: cosine
+amp: true
+sync_bn: false
+log_frequency: 100
+save_frequency: 60
+first_eval_epoch: 15
+param_groups_lrd: true
+layer_decay: 0.75
+num_classes: 35
+mask_t_prob: 0.2
+mask_f_prob: 0.2
+criterion:
+  name: BCEWithLogitsLoss
+model:
+  name: audiomosaic_classifier
+  depth: 12
+  embed_dim: 768
+  num_heads: 12
+  drop_path_rate: 0.1
+  spec_size:
+  - 128
+  - 128
+  patch_stride:
+  - 16
+  - 16
+  pooling: avg
+  pos_trainable: true
+  proj_bias: true
+  # Classifier
+  num_classes: $num_classes
+  ckpt_path: experiments/AudioMosaic/pretrain/checkpoints/model_state_dict.pt
+optimizer:
+  name: AdamW
+  lr: $lr
+data_manager:
+  name: DatasetManager
+  train_bs: 64
+  eval_bs: 128
+  n_workers: 8
+  train_d_type: AudiosetDataset
+  test_d_type: AudiosetDataset
+  train_tf_op: SPCFinetune
+  test_tf_op: SPCFinetune
+  train_path: dataset/spc_util/speechcommandv2_train_data.json
+  test_path: dataset/spc_util/speechcommandv2_eval_data.json
+  label_csv: dataset/spc_util/speechcommands_class_labels_indices_v2.csv

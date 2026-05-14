@@ -1,0 +1,22 @@
+# Core
+torch>=2.0
+torchaudio
+numpy
+scipy
+scikit-learn
+timm
+mlconfig==0.1.0
+audiomentations
+torchlibrosa
+tqdm
+wandb
+ray
+
+# LTU instruction tuning (optional — only needed for main_ltu.py / main_ltu_inference.py / main_ltu_evaluate.py)
+transformers
+accelerate
+huggingface_hub
+datasets
+fire
+tenacity
+openai

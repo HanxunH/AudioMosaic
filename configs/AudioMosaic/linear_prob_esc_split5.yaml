@@ -1,0 +1,53 @@
+epochs: 60
+warmup_epochs: 5
+lr: 0.1
+blr: 0.1
+blr_scale: linear
+min_lr: 1.0e-06
+weight_decay: 0.0
+lr_schedule: cosine
+amp: false
+sync_bn: false
+log_frequency: 10
+save_frequency: 60
+first_eval_epoch: 15
+param_groups_lrd: true
+layer_decay: 0.75
+num_classes: 50
+mask_t_prob: 0.2
+mask_f_prob: 0.2
+criterion:
+  name: CrossEntropyLoss
+model:
+  name: audiomosaic_classifier
+  depth: 12
+  embed_dim: 768
+  num_heads: 12
+  drop_path_rate: 0.1
+  spec_size:
+  - 512
+  - 128
+  patch_stride:
+  - 16
+  - 16
+  pooling: avg
+  pos_trainable: true
+  proj_bias: true
+  # Classifier
+  num_classes: $num_classes
+  ckpt_path: experiments/AudioMosaic/pretrain/checkpoints/model_state_dict.pt
+optimizer:
+  name: AdamW
+  lr: $lr
+data_manager:
+  name: DatasetManager
+  train_bs: 32
+  eval_bs: 128
+  n_workers: 8
+  label_csv: /PATH/TO/datasets/ESC/esc_class_labels_indices.csv
+  train_d_type: AudiosetDataset
+  test_d_type: AudiosetDataset
+  train_tf_op: ESCFinetune
+  test_tf_op: ESCFinetune
+  train_path: /PATH/TO/datasets/ESC/esc_train_data_5.json
+  test_path: /PATH/TO/datasets/ESC/esc_eval_data_5.json
