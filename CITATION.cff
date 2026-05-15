@@ -1,0 +1,47 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Huang"
+  given-names: "Hanxun"
+  orcid: "https://orcid.org/0000-0002-2793-6680"
+- family-names: "Wang"
+  given-names: "Qizhou"
+- family-names: "Ma"
+  given-names: "Xingjun"
+  orcid: "https://orcid.org/0000-0003-2099-4973"
+- family-names: "Xie"
+  given-names: "Cihang"
+  orcid: "https://orcid.org/0000-0003-1243-8045"
+- family-names: "Leckie"
+  given-names: "Christopher"
+  orcid: "https://orcid.org/0000-0002-4388-0517"
+- family-names: "Erfani"
+  given-names: "Sarah"
+  orcid: "https://orcid.org/0000-0003-0885-0643"
+title: "AudioMosaic: Contrastive Masked Audio Representation Learning"
+version: 0.1.0
+date-released: 2026-05-15
+url: "https://github.com/HanxunH/AudioMosaic"
+preferred-citation:
+  type: conference-paper
+  title: "AudioMosaic: Contrastive Masked Audio Representation Learning"
+  authors:
+    - family-names: "Huang"
+      given-names: "Hanxun"
+      orcid: "https://orcid.org/0000-0002-2793-6680"
+    - family-names: "Wang"
+      given-names: "Qizhou"
+    - family-names: "Ma"
+      given-names: "Xingjun"
+      orcid: "https://orcid.org/0000-0003-2099-4973"
+    - family-names: "Xie"
+      given-names: "Cihang"
+      orcid: "https://orcid.org/0000-0003-1243-8045"
+    - family-names: "Leckie"
+      given-names: "Christopher"
+      orcid: "https://orcid.org/0000-0002-4388-0517"
+    - family-names: "Erfani"
+      given-names: "Sarah"
+      orcid: "https://orcid.org/0000-0003-0885-0643"
+  collection-title: "ICML"
+  year: 2026
