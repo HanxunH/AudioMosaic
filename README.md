@@ -1,13 +1,13 @@
 # AudioMosaic: TODO_SUBTITLE_HERE
 
 <div align="center">
-  <!-- <a href="https://arxiv.org/abs/TODO" target="_blank"><img src="https://img.shields.io/badge/arXiv-b5212f.svg?logo=arxiv" alt="arXiv"></a> -->
+  <a href="https://arxiv.org/abs/2605.14231" target="_blank"><img src="https://img.shields.io/badge/arXiv-b5212f.svg?logo=arxiv" alt="arXiv"></a>
   <a href="https://huggingface.co/collections/hanxunh/audiomosaic" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20HuggingFace-AudioMosaic-blue.svg" alt="HuggingFace"></a>
   <a href="https://github.com/HanxunH/AudioMosaic/blob/main/LICENSE" target="_blank"><img alt="License" src="https://img.shields.io/badge/LICENSE-MIT-green"></a>
   <a><img alt="Made with Python" src="https://img.shields.io/badge/made_with-Python-blue"></a>
 </div>
 
-Code for ICML2026 paper [AudioMosaic: Contrastive Masked Audio Representation Learning](https://openreview.net/forum?id=OXJ7KqVOoT).
+Code for ICML2026 paper [AudioMosaic: Contrastive Masked Audio Representation Learning](https://arxiv.org/abs/2605.14231).
 
 ---
 
