@@ -1,4 +1,4 @@
-# AudioMosaic: TODO_SUBTITLE_HERE
+# AudioMosaic: Contrastive Masked Audio Representation Learning
 
 <div align="center">
   <a href="https://arxiv.org/abs/2605.14231" target="_blank"><img src="https://img.shields.io/badge/arXiv-b5212f.svg?logo=arxiv" alt="arXiv"></a>
